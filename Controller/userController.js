@@ -1,4 +1,4 @@
-const userModel = require('../model/userModel');
+
 const User = require('../model/userModel');
 const bcrypt = require('bcryptjs');
 
@@ -70,7 +70,21 @@ exports.registerController = async (req, res) => {
     }
 }
 
-
+exports.getUser=async(req,res)=>{
+    try {
+        const id=req.params.id;
+        const user=await User.findById(id);
+        return res.status(200).send({
+            success: true,
+        
+        
+            message: "Details of users",
+            user
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 exports.loginController = async (req, res) => {
     try {

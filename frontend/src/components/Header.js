@@ -24,21 +24,29 @@ const Header = () => {
     const [value, setValue] = useState()
     return (
         <>
-            <AppBar position='sticky'>
+            <AppBar position='sticky'  >
                 <Toolbar>
-                    <Typography variant='h4' >
+                    <Typography variant='h4' sx={{ flexGrow: 1}} >
                         Bytes&Beyond
                     </Typography>
-                    {isLogin && <Box display={'flex'} marginLeft={'auto'} marginRight={'auto'}>
-                        <Tabs textColor='inherit' value={value} onChange={(e, val) => {
-                            setValue(val)
-                        }}>
-                            <Tab label="Blogs" LinkComponent={Link} to="/blogs" />
-                            <Tab label="My Blogs" LinkComponent={Link} to="/my-blogs" />
-                            <Tab label="Create Blog" LinkComponent={Link} to="/create-blog" />
-                        </Tabs>
+                    {isLogin && <Box display={'flex'}   >
+                        
+                            
+                            <Button sx={{ color: '#fff' }} LinkComponent={Link} to="/blogs" >
+                                Blogs
+                            </Button>
+                            <Button sx={{ color: '#fff' }} LinkComponent={Link} to="/my-blogs" >
+                                My Blogs
+                            </Button>
+                            <Button sx={{ margin: 1, color: "white" }} LinkComponent={Link} to="/create-blog" >
+                                Create Blog
+                            </Button>
+                            {/* <Tab label="Blogs" LinkComponent={Link} to="/blogs" /> */}
+                            {/* <Tab label="My Blogs" LinkComponent={Link} to="/my-blogs" />
+                            <Tab label="Create Blog" LinkComponent={Link} to="/create-blog" /> */}
+                        
                     </Box>}
-                    <Box display={'flex'} marginLeft={'auto'}>
+                    <Box display={'flex'} >
                         {!isLogin && <><Button sx={{ margin: 1, color: "white" }} LinkComponent={Link} to="/login" >  Login</Button>
                             <Button sx={{ margin: 1, color: "white" }} LinkComponent={Link} to="/register">Register</Button></>}
                         {isLogin && <Button onClick={logoutHandler} sx={{ margin: 1, color: "white" }}>Logout</Button>}

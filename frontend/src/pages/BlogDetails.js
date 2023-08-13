@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Box, Button, InputLabel, TextField, Typography } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const BlogDetails = () => {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ const BlogDetails = () => {
 
             )
             if (data && data.success) {
-                alert('Blog updated');
+                toast.success('Blog updated');
                 navigate('/my-blogs');
             }
         } catch (error) {
@@ -69,6 +70,7 @@ const BlogDetails = () => {
                     <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Title</InputLabel>
                     <TextField placeholder='Enter the title' value={inputs.title} name="title" onChange={changeHandler} margin='normal' variant='outlined' required />
                     <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Description</InputLabel>
+                    
                     <TextField placeholder='Enter the description' value={inputs.description} name="description" onChange={changeHandler} margin='normal' variant='outlined' required />
                     <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Image</InputLabel>
                     <TextField placeholder='Enter the imageUrl' value={inputs.image} name="image" onChange={changeHandler} margin='normal' variant='outlined' required />

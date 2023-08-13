@@ -26,6 +26,11 @@ const CreateBlog = () => {
             if (data && data.success) {
                 toast.success('Blog created');
                 navigate('/my-blogs');
+                setInputs({
+                    title: '',
+                    description: '',
+                    image: ''
+                });
             }
         } catch (error) {
             console.log(error);
@@ -45,7 +50,7 @@ const CreateBlog = () => {
                 <Box width={'50%'} border={3} borderRadius={10} padding={3} margin={'auto'}
                     boxShadow={'10px 10px 20px #ccc'} display={"flex"} flexDirection={'column'} marginTop={'30px'}
                 >
-                    <Typography variant='h2' textAlign={"center"} fontWeight={'bold'} padding={3} color={'gray'} >Create a post</Typography>
+                    <Typography variant='h2' textAlign={"center"} fontWeight={'bold'} padding={3} color={'gray'} >Create a blog</Typography>
                     <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Title</InputLabel>
                     <TextField placeholder='Enter the title' value={inputs.title} name="title" onChange={changeHandler} margin='normal' variant='outlined' required />
                     <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Description</InputLabel>

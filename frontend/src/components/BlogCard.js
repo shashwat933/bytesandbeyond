@@ -21,14 +21,17 @@ export default function BlogCard({ title, description, image, username, time, id
     const navigate = useNavigate();
     const editHandler = () => {
         navigate(`/blog-details/${id}`)
+        
     }
-    const deleteHandler=async()=>{
+    const deleteHandler = async () => {
         try {
-            const { data } =await axios.delete(`http://localhost:8080/api/v1/blog/delete-blog/${id}`)
-            if(data && data.success){
+            const { data } = await axios.delete(`http://localhost:8080/api/v1/blog/delete-blog/${id}`);
+            console.log(data);
+            if (data && data.success) {
                 toast.success('Blog Deleted');
+                console.log("HELLO");
                 navigate('/blogs');
-                // window.location.reload();
+
             }
         } catch (error) {
             console.log(error);
@@ -37,39 +40,44 @@ export default function BlogCard({ title, description, image, username, time, id
 
     return (
         <Card sx={{ width: "40%", height: "480px", margin: "auto", mt: 2, padding: 2, boxShadow: '5px 5px 10px #ccc', ":hover:": { boxShadow: "10px 10px 20px #ccc" } }}>
-            {isUser &&
-                <Box display={'flex'}>
-                    <IconButton onClick={editHandler} sx={{ marginLeft: 'auto' }}>
-                        <ModeEditIcon />
-                    </IconButton>
-                    <IconButton>
-                        <DeleteIcon onClick={deleteHandler} />
-                    </IconButton>
-                </Box>
-            }
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="blog">
-                        {username}
-                    </Avatar>
-                }
 
-                title={username}
-                subheader={time}
-            />
+
+            <div style={{ display: "flex", justifyContent: "space-between" }}    >
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="blog">
+                            {username[0]}
+                        </Avatar>
+                    }
+
+                    title={<Typography variant='h6'>{username}</Typography>}
+
+                />
+                {isUser &&
+                    <Box display={'flex'}>
+                        <IconButton onClick={editHandler} sx={{ marginLeft: 'auto' }}>
+                            <ModeEditIcon />
+                        </IconButton>
+                        <IconButton onClick={deleteHandler}>
+                            <DeleteIcon />
+                        </IconButton>
+                    </Box>
+                }
+            </div>
+
 
             <CardMedia
                 component="img"
-                height="300"
+                height="50%"
                 image={image}
                 alt="Image"
             />
             <CardContent>
                 <Typography variant="h6" fontSize={"20px"} fontWeight={"bold"} color="text.primary">
-                    Title: {title}
+                    {title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Description:{description}
+                    {description}
                 </Typography>
             </CardContent>
 

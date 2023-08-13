@@ -5,6 +5,7 @@ const userController=require('../Controller/userController');
 
 router.get('/all-users',userController.getAllUsers);
 
+router.get('/current-user/:id',userController.getUser)
 
 router.post('/register',userController.registerController);
 

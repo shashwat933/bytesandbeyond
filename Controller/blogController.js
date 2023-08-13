@@ -140,9 +140,9 @@ exports.deleteBlog = async (req, res) => {
     try {
         const id = req.params.id;
 
-        const blog = await Blog.findByIdAndDelete(id).populate('user')
-        await blog.user.blogs.pull(blog);
-        await blog.user.save();
+        const blog = await Blog.findByIdAndRemove(id).populate('user')
+        await blog?.user?.blogs.pull(blog);
+        await blog?.user?.save();
         return res.status(200).send({
             success: true,
             message: "Blog deleted",
@@ -164,6 +164,7 @@ exports.userBlog = async (req, res) => {
     try {
         const id = req.params.id;
         console.log(id);
+
         const userBlog = await User.findById(id).populate('blogs');
 
         if (!userBlog) {
