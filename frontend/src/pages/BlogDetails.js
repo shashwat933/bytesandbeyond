@@ -62,8 +62,8 @@ const BlogDetails = () => {
     }
     return (
         <>
-            <form className='laptop:hidden' onSubmit={submitHandler}>
-                <Box width={'90%'}  padding={2} margin={'auto'}
+            <form className='w-3/5 mobile1:w-11/12 mx-auto' onSubmit={submitHandler}>
+                <Box  padding={2} margin={'auto'}
                     boxShadow={'10px 10px 20px #ccc'} display={"flex"} flexDirection={'column'} marginTop={'30px'}
                 >
                     <Typography variant='h3' textAlign={"center"} fontWeight={'bold'} padding={3} color={'gray'} >Edit Blog</Typography>
@@ -81,25 +81,7 @@ const BlogDetails = () => {
 
 
             </form>
-            <form className='mobile1:hidden' onSubmit={submitHandler}>
-                <Box width={'60%'} padding={2} margin={'auto'}
-                    boxShadow={'10px 10px 20px #ccc'} display={"flex"} flexDirection={'column'} marginTop={'30px'}
-                >
-                    <Typography variant='h3' textAlign={"center"} fontWeight={'bold'} padding={3} color={'gray'} >Edit Blog</Typography>
-                    <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Title</InputLabel>
-                    <TextField  placeholder='Enter the title' value={inputs.title} name="title" onChange={changeHandler} margin='normal' variant='outlined' required />
-                    <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Description</InputLabel>
-
-                    <TextField rows={4} multiline placeholder='Enter the description' value={inputs.description} name="description" onChange={changeHandler} margin='normal' variant='outlined' required />
-                    <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Image</InputLabel>
-                    <TextField placeholder='Enter the imageUrl' value={inputs.image} name="image" onChange={changeHandler} margin='normal' variant='outlined' required />
-                    <Button type='submit' color='warning' variant='contained' sx={{ width: '50%', margin: '0 auto', height: "3rem", marginTop: "15px" }}  >Update</Button>
-
-
-                </Box>
-
-
-            </form>            
+                  
 
         </>
     )
