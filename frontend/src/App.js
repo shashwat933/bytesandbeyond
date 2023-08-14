@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
+
 import Blogs from './pages/Blogs';
 import Login from './pages/Login';
 import Register from './pages/Register'
@@ -7,13 +7,15 @@ import UserBlogs from './pages/UserBlogs';
 import CreateBlog from './pages/CreateBlog';
 import BlogDetails from './pages/BlogDetails';
 import { Toaster } from 'react-hot-toast'
-import Footer from './components/Footer';
-
+import NavigationPC from './components/HeaderPc'
+import NavigationPhone from './components/HeaderMobile';
 function App() {
   return (
     <>
-      <Header />
-      <Toaster/>
+    
+      <NavigationPC />
+      <NavigationPhone />
+      <Toaster />
       <Routes >
         <Route path='/' element={<Blogs />} />
         <Route path='/blogs' element={<Blogs />} />

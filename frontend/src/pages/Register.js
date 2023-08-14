@@ -5,6 +5,7 @@ import { Box, Typography, TextField, Button } from '@mui/material'
 import toast from 'react-hot-toast';
 
 const Register = () => {
+    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({
         name: '',
@@ -24,6 +25,7 @@ const Register = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
+            setIsLoading(true);
             const { data } = await axios.post('http://localhost:8080/api/v1/user/register', { username: inputs.name, email: inputs.email, password: inputs.password });
            
             if (data.success) {
@@ -93,7 +95,7 @@ const Register = () => {
                         type='submit'
                         variant='contained'
                         color='primary'
-                    >Submit</Button>
+                    >{isLoading?'Registering...':'Register'}</Button>
                     <Button
                         sx={{ borderRadius: 3, marginTop: 3 }}
                         type='submit'

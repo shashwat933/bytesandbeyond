@@ -1,17 +1,4 @@
 import * as React from 'react';
-
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-
-import Avatar from '@mui/material/Avatar';
-
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -21,7 +8,7 @@ export default function BlogCard({ title, description, image, username, time, id
     const navigate = useNavigate();
     const editHandler = () => {
         navigate(`/blog-details/${id}`)
-        
+
     }
     const deleteHandler = async () => {
         try {
@@ -39,49 +26,31 @@ export default function BlogCard({ title, description, image, username, time, id
     }
 
     return (
-        <Card sx={{ width: "40%", height: "480px", margin: "auto", mt: 2, padding: 2, boxShadow: '5px 5px 10px #ccc', ":hover:": { boxShadow: "10px 10px 20px #ccc" } }}>
+        <>
+            <div className="mobile2:w-size2 w-size1 mb-10 rounded overflow-hidden shadow-lg">
+                <div className='m-4 flex justify-between'> <div><div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-mine2 rounded-full ">
+                    <span className="font-medium text-white ">{username[0]}</span>
 
+                </div>
+                    <span className="ml-4 text-lg font-medium text-mine2 ">{username}</span></div>
 
-            <div style={{ display: "flex", justifyContent: "space-between" }}    >
-                <CardHeader
-                    avatar={
-                        <Avatar sx={{ bgcolor: red[500] }} aria-label="blog">
-                            {username[0]}
-                        </Avatar>
-                    }
+                    {isUser && <div className='flex w-14 items-center justify-between	'>
 
-                    title={<Typography variant='h6'>{username}</Typography>}
+                        <i onClick={editHandler} className="cursor-pointer  fa-solid fa-pen fa-lg" size="2xl" style={{ color: "#1976d2", }}></i>
+                        <i onClick={deleteHandler} className=" cursor-pointer fa-sharp fa-solid fa-trash fa-lg" style={{ color: "#1976d2", }}></i>
+                    </div>}
+                </div>
+                <img className="h-sizeOfImage w-full" src={image} alt="Technical Blog" />
+                <div className="px-6 py-4 ">
+                    <div className="font-bold text-xl mb-2">{title}</div>
+                    <p className="text-gray-700 line-clamp-4 text-base">
+                        {description}
+                    </p>
+                </div>
 
-                />
-                {isUser &&
-                    <Box display={'flex'}>
-                        <IconButton onClick={editHandler} sx={{ marginLeft: 'auto' }}>
-                            <ModeEditIcon />
-                        </IconButton>
-                        <IconButton onClick={deleteHandler}>
-                            <DeleteIcon />
-                        </IconButton>
-                    </Box>
-                }
             </div>
 
 
-            <CardMedia
-                component="img"
-                height="50%"
-                image={image}
-                alt="Image"
-            />
-            <CardContent>
-                <Typography variant="h6" fontSize={"20px"} fontWeight={"bold"} color="text.primary">
-                    {title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {description}
-                </Typography>
-            </CardContent>
-
-
-        </Card>
+        </>
     );
 }

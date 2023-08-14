@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { authActions } from '../redux/store';
 import toast from 'react-hot-toast';
 const Login = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState({
@@ -24,6 +25,7 @@ const Login = () => {
     }
 
     const submitHandler = async (e) => {
+        setIsLoading(true);
         e.preventDefault();
         try {
             const { data } = await axios.post('http://localhost:8080/api/v1/user/login', { username: inputs.name, email: inputs.email, password: inputs.password });
@@ -66,7 +68,7 @@ const Login = () => {
                         padding={3}
                         textAlign={'center'}
                     >
-                        Login
+                        Log in
                     </Typography>
 
                     <TextField placeholder='email'
@@ -88,7 +90,7 @@ const Login = () => {
                         type='submit'
                         variant='contained'
                         color='primary'
-                    >Submit</Button>
+                    >{isLoading ? 'Logging In...' : 'Log In'}</Button>
                     <Button
                         sx={{ borderRadius: 3, marginTop: 3 }}
                         type='submit'
