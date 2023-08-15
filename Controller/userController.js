@@ -21,10 +21,6 @@ exports.getAllUsers = async (req, res) => {
             error
         })
     }
-
-
-
-
 }
 
 exports.registerController = async (req, res) => {
@@ -52,7 +48,7 @@ exports.registerController = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const user = new User({ username, email, password: hashedPassword, blogs    });
+        const user = new User({ username, email, password: hashedPassword, blogs });
         await user.save();
         return res.status(201).send({
             success: true,
@@ -70,14 +66,14 @@ exports.registerController = async (req, res) => {
     }
 }
 
-exports.getUser=async(req,res)=>{
+exports.getUser = async (req, res) => {
     try {
-        const id=req.params.id;
-        const user=await User.findById(id);
+        const id = req.params.id;
+        const user = await User.findById(id);
         return res.status(200).send({
             success: true,
-        
-        
+
+
             message: "Details of users",
             user
         })

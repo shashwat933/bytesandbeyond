@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 
 const BlogDetails = () => {
     const navigate = useNavigate();
+    const [isLoadingEdit, setIsLoadingEdit] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const id = useParams().id;
     const [inputs, setInputs] = useState({
@@ -14,6 +15,7 @@ const BlogDetails = () => {
 
     const deleteButtonHandler = async () => {
         try {
+            setIsLoading(true);
             const { data } = await axios.delete(`http://localhost:8080/api/v1/blog/delete-blog/${id}`);
             console.log(data);
             if (data && data.success) {
@@ -49,6 +51,7 @@ const BlogDetails = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setIsLoadingEdit(true);
         try {
             const { data } = await axios.put(`http://localhost:8080/api/v1/blog/update-blog/${id}`,
                 {
@@ -91,7 +94,7 @@ const BlogDetails = () => {
                     <InputLabel sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: 'bold' }}>Image</InputLabel>
                     <TextField placeholder='Enter the imageUrl' value={inputs.image} name="image" onChange={changeHandler} margin='normal' variant='outlined' required />
                     <div className='flex'>
-                        <Button className=' w-56 mobile1:w-44 ' type='submit' color='primary' variant='contained' sx={{ margin: '0 auto', height: "3rem", marginTop: "15px" }}  >{isLoading?'Updating...':'Update'}</Button>
+                        <Button className=' w-56 mobile1:w-44 ' type='submit' color='primary' variant='contained' sx={{ margin: '0 auto', height: "3rem", marginTop: "15px" }}  >{isLoadingEdit?'Updating...':'Update'}</Button>
                         
                     </div>
 

@@ -30,10 +30,10 @@ const NavigationPC = (props) => {
                         Bytes&Beyond
                     </Typography>
                     <ul className='flex justify-between items-center  text-white'>
-                        {isLogin && <><Button sx={{ fontSize: '15px', color: '#fff' }} LinkComponent={Link} to="/blogs" >
+                        {isLogin && <><Button sx={{margin:1, fontSize: '15px', color: '#fff' }} LinkComponent={Link} to="/blogs" >
                             Blogs
                         </Button>
-                            <Button sx={{ fontSize: '15px', color: '#fff' }} LinkComponent={Link} to="/my-blogs" >
+                            <Button sx={{margin:1, fontSize: '15px', color: '#fff' }} LinkComponent={Link} to="/my-blogs" >
                                 My Blogs
                             </Button>
                             <Button sx={{ margin: 1,fontSize:'15px', color: "white" }} LinkComponent={Link} to="/create-blog" >
