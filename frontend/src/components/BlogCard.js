@@ -10,20 +10,7 @@ export default function BlogCard({ title, description, image, username, time, id
         navigate(`/blog-details/${id}`)
 
     }
-    const deleteHandler = async () => {
-        try {
-            const { data } = await axios.delete(`http://localhost:8080/api/v1/blog/delete-blog/${id}`);
-            console.log(data);
-            if (data && data.success) {
-                toast.success('Blog Deleted');
-                console.log("HELLO");
-                navigate('/blogs');
-
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    
 
     return (
         <>
@@ -34,10 +21,10 @@ export default function BlogCard({ title, description, image, username, time, id
                 </div>
                     <span className="ml-4 text-lg font-medium text-mine2 ">{username}</span></div>
 
-                    {isUser && <div className='flex w-14 items-center justify-between	'>
+                    {isUser && <div className='flex  items-center justify-between	'>
 
                         <i onClick={editHandler} className="cursor-pointer  fa-solid fa-pen fa-lg" size="2xl" style={{ color: "#1976d2", }}></i>
-                        <i onClick={deleteHandler} className=" cursor-pointer fa-sharp fa-solid fa-trash fa-lg" style={{ color: "#1976d2", }}></i>
+                        
                     </div>}
                 </div>
                 <img className="h-sizeOfImage w-full" src={image} alt="Technical Blog" />
