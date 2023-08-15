@@ -45,7 +45,7 @@ const UserBlogs = () => {
                 </div></div>}
             {!loading &&
                 <div className=' mobile1:items-center laptop:w-128 flex flex-col laptop:flex-row laptop:justify-between laptop:flex-wrap  pt-8 my-4 mx-auto '>
-                {blogs && blogs.map((blog) =>
+                {blogs.length!==0 && blogs.map((blog) =>
                     <BlogCard
                         
                         key={blog._id}
@@ -58,6 +58,10 @@ const UserBlogs = () => {
                         time={blog?.createdAt}
                     />
                 )}
+                    {blogs.length === 0 && <>
+                        <div className='mx-auto'><p className='text-12'>No blogs found</p> </div>
+
+                    </>}
             </div>}
         </>
     )

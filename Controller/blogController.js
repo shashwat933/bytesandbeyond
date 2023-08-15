@@ -7,7 +7,7 @@ const User = require('../model/userModel');
 exports.getAllBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find({}).populate('user');
-        if (!blogs || blogs.length===0) {
+        if (!blogs) {
             return res.status(200).send({
                 success: false,
                 message: 'No blogs found'
@@ -60,8 +60,8 @@ exports.createBlog = async (req, res) => {
         await blog.save({ session });
         existingUser.blogs.push(blog);
         await existingUser.save({ session });
-        await session.commitTransaction(); 
-        
+        await session.commitTransaction();
+        await blog.save();
         return res.status(201).send({
             success: true,
             message: "Blog created!",
