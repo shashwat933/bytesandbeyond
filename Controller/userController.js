@@ -105,7 +105,7 @@ exports.loginController = async (req, res) => {
         if (!isMatch) {
             return res.status(401).send({
                 success: false,
-                message: 'Invalid username of password'
+                message: 'Invalid username or password'
             })
         }
 

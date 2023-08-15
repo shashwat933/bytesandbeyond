@@ -7,7 +7,7 @@ const User = require('../model/userModel');
 exports.getAllBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find({}).populate('user');
-        if (!blogs) {
+        if (!blogs  ) {
             return res.status(200).send({
                 success: false,
                 message: 'No blogs found'

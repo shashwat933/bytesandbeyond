@@ -40,7 +40,10 @@ const Login = () => {
 
 
         } catch (error) {
-
+       
+                setIsLoading(false);
+                toast.error('Invalid username or password"');
+            
             console.log(error);
         }
 

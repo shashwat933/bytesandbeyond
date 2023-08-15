@@ -25,7 +25,6 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/create-blog' element={<CreateBlog />} />
       </Routes>
-      {/* <Footer/> */}
     </>
   );
 }
