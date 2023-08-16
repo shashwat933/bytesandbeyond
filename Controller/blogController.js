@@ -7,7 +7,7 @@ const User = require('../model/userModel');
 exports.getAllBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find({}).populate('user');
-        if (!blogs  ) {
+        if (!blogs) {
             return res.status(200).send({
                 success: false,
                 message: 'No blogs found'
@@ -55,13 +55,12 @@ exports.createBlog = async (req, res) => {
         }
 
         const blog = new Blog({ title, description, image, user });
-        const session = await mongoose.startSession()
-        session.startTransaction()
-        await blog.save({ session });
-        existingUser.blogs.push(blog);
-        await existingUser.save({ session });
-        await session.commitTransaction();
+
+
         await blog.save();
+        existingUser.blogs.push(blog);
+        await existingUser.save();
+
         return res.status(201).send({
             success: true,
             message: "Blog created!",
