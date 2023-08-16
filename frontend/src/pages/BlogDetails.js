@@ -16,7 +16,7 @@ const BlogDetails = () => {
     const deleteButtonHandler = async () => {
         try {
             setIsLoading(true);
-            const { data } = await axios.delete(`http://localhost:8080/api/v1/blog/delete-blog/${id}`);
+            const { data } = await axios.delete(`http://localhost:8080/blog/delete-blog/${id}`);
             console.log(data);
             if (data && data.success) {
                 toast.success('Blog Deleted');
@@ -30,7 +30,7 @@ const BlogDetails = () => {
     }
     const getBlogDetail = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:8080/api/v1/blog/get-blog/${id}`);
+            const { data } = await axios.get(`http://localhost:8080/blog/get-blog/${id}`);
             if (data && data.success) {
 
                 setInputs({
@@ -53,7 +53,7 @@ const BlogDetails = () => {
         e.preventDefault();
         setIsLoadingEdit(true);
         try {
-            const { data } = await axios.put(`http://localhost:8080/api/v1/blog/update-blog/${id}`,
+            const { data } = await axios.put(`http://localhost:8080/blog/update-blog/${id}`,
                 {
                     title: inputs.title,
                     description: inputs.description,

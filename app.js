@@ -13,8 +13,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/v1/user', userRoutes);
-app.use('/api/v1/blog',blogRoutes);
+app.use('/user', userRoutes);
+app.use('/blog',blogRoutes);
 
 app.get('/', (req, res) => {
     res.status(200).send({

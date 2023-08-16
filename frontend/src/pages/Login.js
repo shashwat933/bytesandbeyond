@@ -28,7 +28,7 @@ const Login = () => {
         setIsLoading(true);
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:8080/api/v1/user/login', { username: inputs.name, email: inputs.email, password: inputs.password });
+            const { data } = await axios.post('http://localhost:8080/user/login', { username: inputs.name, email: inputs.email, password: inputs.password });
 
             if (data && data.success) {
                 localStorage.setItem('userId', data.user._id);

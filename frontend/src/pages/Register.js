@@ -26,7 +26,7 @@ const Register = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const { data } = await axios.post('http://localhost:8080/api/v1/user/register', { username: inputs.name, email: inputs.email, password: inputs.password });
+            const { data } = await axios.post('http://localhost:8080/user/register', { username: inputs.name, email: inputs.email, password: inputs.password });
            
             if (data.success) {
                 toast.success('User registered successfully');
