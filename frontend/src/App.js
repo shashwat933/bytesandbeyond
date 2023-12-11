@@ -9,7 +9,14 @@ import BlogDetails from './pages/BlogDetails';
 import { Toaster } from 'react-hot-toast'
 import NavigationPC from './components/HeaderPc'
 import NavigationPhone from './components/HeaderMobile';
+import Footer from './components/Footer';
+export const BackendUrl ="https://bytesandbeyond.onrender.com";
+
+
+
 function App() {
+
+  
   return (
     <>
     
@@ -25,6 +32,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/create-blog' element={<CreateBlog />} />
       </Routes>
+      <Footer/>
     </>
   );
 }

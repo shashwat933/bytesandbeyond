@@ -20,7 +20,7 @@ const NavigationPC = (props) => {
 
     }
     let isLogin = useSelector(state => state.isLogin)
-    isLogin = isLogin || localStorage.getItem('userId');
+    isLogin = isLogin || localStorage.getItem('token');
     return (
         <>
 

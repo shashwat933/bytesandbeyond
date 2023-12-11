@@ -14,16 +14,16 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/user', userRoutes);
-app.use('/blog',blogRoutes);
+app.use('/blog', blogRoutes);
 
 app.get('/', (req, res) => {
-    res.status(200).send({
+    return res.status(200).send({
         message: "RUNNING SUCCESSFULLY"
     })
 })
 connectDB();
 const PORT = process.env.PORT || 8080;
-const DEV_MODE = process.env.DEV_MODE || "Development";
+
 app.listen(PORT, () => {
-    console.log(`Server Running on ${DEV_MODE} mode on ${PORT}`);
+    console.log(`Server Running on ${PORT}`);
 })

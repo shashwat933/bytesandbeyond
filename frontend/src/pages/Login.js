@@ -5,6 +5,7 @@ import { Box, Typography, TextField, Button } from '@mui/material'
 import { useDispatch } from 'react-redux';
 import { authActions } from '../redux/store';
 import toast from 'react-hot-toast';
+import { BackendUrl } from '../App';
 const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -28,10 +29,11 @@ const Login = () => {
         setIsLoading(true);
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:8080/user/login', { username: inputs.name, email: inputs.email, password: inputs.password });
+            const { data } = await axios.post(`${BackendUrl}/user/login`, { username: inputs.name, email: inputs.email, password: inputs.password });
 
             if (data && data.success) {
                 localStorage.setItem('userId', data.user._id);
+                localStorage.setItem('token', data.token);
                 dispatch(authActions.login())
                 toast.success('User login successfully');
                 navigate('/blogs')

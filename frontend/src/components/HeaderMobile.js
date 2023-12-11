@@ -21,7 +21,7 @@ const NavigationPhone = (props) => {
 
     }
     let isLogin = useSelector(state => state.isLogin)
-    isLogin = isLogin || localStorage.getItem('userId');
+    isLogin = isLogin || localStorage.getItem('token');
     const [isClicked, setIsClicked] = useState(false)
     const buttonHandelr = () => {
         return setIsClicked(!isClicked)

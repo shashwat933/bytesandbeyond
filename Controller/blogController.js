@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-
 const Blog = require('../model/blogModel');
 const User = require('../model/userModel');
 
@@ -162,7 +160,7 @@ exports.deleteBlog = async (req, res) => {
 exports.userBlog = async (req, res) => {
     try {
         const id = req.params.id;
-        console.log(id);
+       
 
         const userBlog = await User.findById(id).populate('blogs');
 

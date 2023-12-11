@@ -3,8 +3,10 @@ import { Box, Button, InputLabel, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { BackendUrl } from '../App'
 const CreateBlog = () => {
-    const [setsubmitting, setSetsubmitting] = useState(false)
+    const token = localStorage.getItem('token');
+    const [setsubmitting, setSetsubmitting] = useState(false);
     const id = localStorage.getItem('userId');
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({
@@ -13,16 +15,22 @@ const CreateBlog = () => {
         image: ''
     })
     const submitHandler = async (e) => {
+        console.log(token);
         e.preventDefault();
         try {
-
+            
             setSetsubmitting(true);
-            const { data } = await axios.post('http://localhost:8080/blog/create-blog',
+            const { data } = await axios.post(`${BackendUrl}/blog/create-blog`,
                 {
                     title: inputs.title,
                     description: inputs.description,
                     image: inputs.image,
                     user: id
+                },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
                 }
 
             )

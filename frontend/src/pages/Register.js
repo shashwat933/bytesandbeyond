@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { Box, Typography, TextField, Button } from '@mui/material'
 import toast from 'react-hot-toast';
+import { BackendUrl } from '../App';
 
 const Register = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +27,7 @@ const Register = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const { data } = await axios.post('http://localhost:8080/user/register', { username: inputs.name, email: inputs.email, password: inputs.password });
+            const { data } = await axios.post(`${BackendUrl}/user/register`, { username: inputs.name, email: inputs.email, password: inputs.password });
            
             if (data.success) {
                 toast.success('User registered successfully');
